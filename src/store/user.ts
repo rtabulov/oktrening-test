@@ -70,7 +70,8 @@ export const useUserStore = defineStore({
   // persist: true,
   state: () => ({
     availableUsers: availableUsers.slice(),
-    selectedUserId: null as number | null,
+    selectedUserId: 5 as number | null,
+    // selectedUserId: null as number | null,
   }),
   getters: {
     selectedUser(state) {

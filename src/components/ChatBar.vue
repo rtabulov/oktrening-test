@@ -41,7 +41,7 @@ export default {
       </div>
       <div class="flex min-w-0 grow flex-col">
         <p class="flex items-center justify-between">
-          <span class="min-w-0 truncate">{{ chat.name }}</span>
+          <span class="min-w-0 truncate font-medium">{{ chat.name }}</span>
           <time
             class="text-sm text-slate-400"
             v-if="lastMessage"
