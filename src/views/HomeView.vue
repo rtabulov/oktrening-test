@@ -1,9 +1,5 @@
-<script setup lang="ts">
-import TheWelcome from '@/components/TheWelcome.vue'
-</script>
-
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <div class="container">
+    <h1 class="text-red text-3xl font-bold underline">Hello world!</h1>
+  </div>
 </template>

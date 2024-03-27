@@ -1,4 +1,4 @@
-# oktrening-test-task
+# Chat app for Oktrening
 
 ### Work log:
 
