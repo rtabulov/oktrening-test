@@ -1,4 +1,4 @@
-import { createPinia, type PiniaPluginContext } from 'pinia';
+import { createPinia } from 'pinia';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import { piniaPluginTabSync } from './plugins/piniaPluginTabSync';
 

@@ -17,7 +17,7 @@ export default {
   >
     <TheHeader />
     <main class="grow">
-      <router-view />
+      <RouterView />
     </main>
     <TheFooter />
   </div>

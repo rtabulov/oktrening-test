@@ -1,4 +1,5 @@
-import Vue from 'vue';
+import { useChatStore } from '@/store/chats';
+import Vue, { nextTick } from 'vue';
 import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
@@ -15,14 +16,48 @@ const router = new VueRouter({
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue'),
     },
     {
+      path: '/chats/:chatSlug?',
+      name: 'chats',
+      component: () => import('../views/ChatView.vue'),
+      props: (route) => {
+        return {
+          chatSlug: route.params.chatSlug,
+          chatId: useChatStore().chats.find(
+            (user) => user.slug === route.params.chatSlug,
+          )?.id,
+        };
+      },
+      beforeEnter: async (to, from, next) => {
+        // reject the navigation
+        await nextTick();
+        const { chats } = useChatStore();
+        console.log(structuredClone(chats));
+        if (!to.params.chatSlug) {
+          return next();
+        }
+
+        if (chats.findIndex((chat) => chat.slug === to.params.chatSlug) >= 0) {
+          return next();
+        }
+
+        return next({
+          name: 'not-found',
+          params: {
+            // @ts-expect-error
+            pathMatch: to.path.substring(1).split('/'),
+          },
+          query: to.query,
+          hash: to.hash,
+        });
+      },
+    },
+    {
       // will match everything
-      path: '*',
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
       component: () => import('../views/NotFoundView.vue'),
     },
   ],

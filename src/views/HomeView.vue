@@ -1,21 +1,18 @@
 <script lang="ts">
 import UserSelect from '@/components/UserSelect.vue';
 import { useUserStore } from '@/store/user';
-import { toRef } from 'vue';
+import { mapStores } from 'pinia';
 
 export default {
+  name: 'HomeView',
   components: {
     UserSelect,
   },
-  setup() {
-    const store = useUserStore();
-
-    return {
-      selectedUserId: toRef(store, 'selectedUserId'),
-    };
+  computed: {
+    ...mapStores(useUserStore),
   },
   watch: {
-    selectedUserId: {
+    'userStore.selectedUserId': {
       immediate: true,
       handler(userId) {
         if (userId) {

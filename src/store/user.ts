@@ -1,5 +1,12 @@
 import { defineStore } from 'pinia';
 
+export interface User {
+  id: number;
+  name: string;
+  slug: string;
+  avatar: string;
+}
+
 export const availableUsers = [
   {
     id: 1,
@@ -55,13 +62,7 @@ export const availableUsers = [
     slug: 'hank',
     avatar: 'https://i.pravatar.cc/400?u=hank',
   },
-  {
-    id: 10,
-    name: 'Ivy',
-    slug: 'ivy',
-    avatar: 'https://i.pravatar.cc/400?u=ivy',
-  },
-];
+] as User[];
 
 export const useUserStore = defineStore({
   id: 'user',
