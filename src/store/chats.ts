@@ -158,11 +158,18 @@ export const useChatStore = defineStore({
       );
     },
     lastMessages(state) {
+      const userStore = useUserStore();
+
       return state.messages.reduce(
         (acc, message) => {
-          if (!acc[message.to]) {
+          if (!acc[message.to] && message.from === userStore.selectedUserId) {
             acc[message.to] = message;
           }
+
+          if (!acc[message.from] && message.to === userStore.selectedUserId) {
+            acc[message.from] = message;
+          }
+
           return acc;
         },
         {} as Record<number, Message>,

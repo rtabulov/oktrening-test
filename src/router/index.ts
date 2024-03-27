@@ -34,7 +34,6 @@ const router = new VueRouter({
         // reject the navigation
         await nextTick();
         const { chats } = useChatStore();
-        console.log(structuredClone(chats));
         if (!to.params.chatSlug) {
           return next();
         }
