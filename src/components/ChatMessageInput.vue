@@ -18,6 +18,9 @@ export default defineComponent({
       this.$emit('submit', this.text);
       this.text = '';
     },
+    focus() {
+      (this.$refs.input as HTMLInputElement).focus();
+    },
   },
 });
 </script>
@@ -25,6 +28,7 @@ export default defineComponent({
 <template>
   <form class="bg-slate-900" @submit.prevent="onSubmit">
     <input
+      ref="input"
       v-model="text"
       type="text"
       placeholder="Write a message..."

@@ -26,6 +26,15 @@ export default defineComponent({
   computed: {
     ...mapStores(useChatStore, useUserStore),
   },
+  watch: {
+    chatId: {
+      immediate: true,
+      async handler() {
+        await this.$nextTick();
+        (this.$refs.input as InstanceType<typeof ChatMessageInput>).focus();
+      },
+    },
+  },
   methods: {
     onSubmit(text: string) {
       this.chatsStore.sendMessage({ text, to: this.chatId });
