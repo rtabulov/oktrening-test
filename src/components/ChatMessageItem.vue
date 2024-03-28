@@ -32,16 +32,16 @@ export default defineComponent({
     }"
   >
     <p
-      class="inline-block max-w-96 rounded-full px-3 py-2"
+      class="relative inline-block max-w-xl rounded-3xl pb-2 pl-3 pt-2"
       :class="{
-        'rounded-br-none bg-slate-700': isSender,
-        'rounded-bl-none bg-slate-900': !isSender,
+        'rounded-br-none bg-slate-700 pr-12': isSender,
+        'rounded-bl-none bg-slate-900 pr-14': !isSender,
       }"
     >
       {{ message.text }}
       <time
         :datetime="message.createdAt.toLocaleString()"
-        class="inline-block translate-y-1.5 pl-2 text-xs text-slate-400"
+        class="absolute bottom-1 right-2 inline-block text-xs text-slate-400"
         :class="{
           'pr-0.5': !isSender,
         }"
