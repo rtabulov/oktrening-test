@@ -40,8 +40,8 @@ export default defineComponent({
         <p class="flex items-center justify-between">
           <span class="min-w-0 truncate font-medium">{{ chat.name }}</span>
           <time
-            class="text-sm text-slate-400"
             v-if="chat.lastMessage"
+            class="text-sm text-slate-400"
             :datetime="chat.lastMessage.createdAt.toLocaleString()"
           >
             {{ formatDistanceToNow(chat.lastMessage.createdAt) }}

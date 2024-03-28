@@ -5,8 +5,9 @@ import type {
 } from 'pinia';
 
 declare module 'pinia' {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   export interface DefineStoreOptionsBase<S, Store> {
-    // allow defining a number of ms for any of the actions
+    // state keys for sync
     tabSync?: string[];
   }
 }
@@ -16,10 +17,13 @@ interface StateMutation {
   patch: Patch;
 }
 
-type Patch = Record<string, any>;
+type Patch = Partial<StateTree>;
 
-export function piniaPluginTabSync({ store, options }: PiniaPluginContext) {
-  if (!options.tabSync) {
+export function piniaPluginTabSync({
+  store,
+  options: { tabSync },
+}: PiniaPluginContext) {
+  if (!tabSync) {
     return;
   }
 
@@ -37,7 +41,7 @@ export function piniaPluginTabSync({ store, options }: PiniaPluginContext) {
   });
 
   store.$subscribe((mutation) => {
-    const patch = options.tabSync!.reduce((acc, key) => {
+    const patch = tabSync.reduce((acc, key) => {
       acc[key] = store.$state[key];
       return acc;
     }, {} as Patch);

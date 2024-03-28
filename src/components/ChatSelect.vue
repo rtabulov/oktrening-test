@@ -6,6 +6,9 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'ChatSelect',
+  components: {
+    ChatBar,
+  },
   props: {
     chatSlug: {
       type: String,
@@ -15,9 +18,6 @@ export default defineComponent({
       type: Number,
       default: null,
     },
-  },
-  components: {
-    ChatBar,
   },
   computed: {
     ...mapStores(useChatStore),

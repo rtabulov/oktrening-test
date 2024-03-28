@@ -45,7 +45,7 @@ const router = new VueRouter({
         return next({
           name: 'not-found',
           params: {
-            // @ts-expect-error
+            // @ts-expect-error params can accept string[]
             pathMatch: to.path.substring(1).split('/'),
           },
           query: to.query,

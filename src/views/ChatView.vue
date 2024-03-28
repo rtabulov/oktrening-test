@@ -9,6 +9,11 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'ChatView',
+  components: {
+    ChatSelect,
+    ChatMessages,
+    ChatSelectPrompt,
+  },
   props: {
     chatSlug: {
       type: String,
@@ -19,25 +24,18 @@ export default defineComponent({
       default: null,
     },
   },
-  components: {
-    ChatSelect,
-    ChatMessages,
-    ChatSelectPrompt,
-  },
   computed: {
     ...mapStores(useUserStore, useChatStore),
 
     messages() {
-      if (!this.userStore.selectedUserId) {
+      const { selectedUserId } = this.userStore;
+      if (!selectedUserId) {
         return [];
       }
 
       return this.chatsStore.messages.filter((message) => {
         const temp = [message.from, message.to];
-        return (
-          temp.includes(this.chatId) &&
-          temp.includes(this.userStore.selectedUserId!)
-        );
+        return temp.includes(this.chatId) && temp.includes(selectedUserId);
       });
     },
   },
@@ -61,7 +59,7 @@ export default defineComponent({
         <ChatSelect v-bind="$props" />
       </div>
       <div class="max-h-full min-h-0 grow">
-        <ChatMessages v-if="chatId" :messages="messages" :chatId="chatId" />
+        <ChatMessages v-if="chatId" :messages="messages" :chat-id="chatId" />
         <ChatSelectPrompt v-else />
       </div>
     </div>

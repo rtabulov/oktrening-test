@@ -9,6 +9,10 @@ import ChatMessageItem from './ChatMessageItem.vue';
 
 export default defineComponent({
   name: 'ChatMessages',
+  components: {
+    ChatMessageInput,
+    ChatMessageItem,
+  },
   props: {
     messages: {
       type: Array as PropType<Message[]>,
@@ -18,10 +22,6 @@ export default defineComponent({
       type: Number,
       required: true,
     },
-  },
-  components: {
-    ChatMessageInput,
-    ChatMessageItem,
   },
   computed: {
     ...mapStores(useChatStore, useUserStore),

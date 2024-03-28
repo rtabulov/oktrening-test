@@ -3,15 +3,15 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'ChatMessageInput',
-  data() {
-    return {
-      text: '',
-    };
-  },
   emits: {
     submit(text: string) {
       return text.length >= 1;
     },
+  },
+  data() {
+    return {
+      text: '',
+    };
   },
   methods: {
     onSubmit() {
