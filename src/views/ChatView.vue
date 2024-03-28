@@ -27,10 +27,15 @@ export default {
     ...mapStores(useUserStore, useChatStore),
 
     messages() {
+      if (!this.userStore.selectedUserId) {
+        return [];
+      }
+
       return this.chatsStore.messages.filter((message) => {
+        const temp = [message.from, message.to];
         return (
-          message.from === this.userStore.selectedUserId &&
-          message.to === this.chatId
+          temp.includes(this.chatId) &&
+          temp.includes(this.userStore.selectedUserId!)
         );
       });
     },
@@ -50,12 +55,12 @@ export default {
 
 <template>
   <div class="container">
-    <div class="flex">
+    <div class="flex gap-px">
       <div class="w-80">
         <ChatSelect v-bind="$props" />
       </div>
       <div class="grow">
-        <ChatMessages v-if="chatId" :messages="messages" />
+        <ChatMessages v-if="chatId" :messages="messages" :chatId="chatId" />
         <ChatSelectPrompt v-else />
       </div>
     </div>

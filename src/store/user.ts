@@ -66,12 +66,9 @@ export const availableUsers = [
 
 export const useUserStore = defineStore({
   id: 'user',
-  // tabSync: true,
-  // persist: true,
   state: () => ({
     availableUsers: availableUsers.slice(),
-    selectedUserId: 5 as number | null,
-    // selectedUserId: null as number | null,
+    selectedUserId: null as number | null,
   }),
   getters: {
     selectedUser(state) {

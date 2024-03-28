@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { useUserStore, type User } from './user';
+import { nanoid } from 'nanoid';
 
 export interface Chat extends User {}
 
@@ -9,6 +10,11 @@ export interface Message {
   to: number;
   text: string;
   createdAt: Date;
+}
+
+export interface MessagePayload {
+  to: number;
+  text: string;
 }
 
 const messages = [
@@ -162,11 +168,11 @@ export const useChatStore = defineStore({
 
       return state.messages.reduce(
         (acc, message) => {
-          if (!acc[message.to] && message.from === userStore.selectedUserId) {
+          if (message.from === userStore.selectedUserId) {
             acc[message.to] = message;
           }
 
-          if (!acc[message.from] && message.to === userStore.selectedUserId) {
+          if (message.to === userStore.selectedUserId) {
             acc[message.from] = message;
           }
 
@@ -174,6 +180,23 @@ export const useChatStore = defineStore({
         },
         {} as Record<number, Message>,
       );
+    },
+  },
+
+  actions: {
+    sendMessage({ text, to }: MessagePayload) {
+      const userStore = useUserStore();
+      if (!userStore.selectedUserId) {
+        throw new Error('Cannot create message: User not logged in');
+      }
+
+      this.messages.push({
+        id: nanoid(),
+        text,
+        to,
+        from: userStore.selectedUserId,
+        createdAt: new Date(),
+      });
     },
   },
 });
