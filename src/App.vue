@@ -19,6 +19,5 @@ export default {
     <main class="grow">
       <RouterView />
     </main>
-    <TheFooter />
   </div>
 </template>
