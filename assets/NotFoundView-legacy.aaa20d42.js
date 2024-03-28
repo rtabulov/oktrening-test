@@ -1,0 +1,1 @@
+System.register(["./index-legacy.22172052.js"],(function(t,n){"use strict";var e;return{setters:[function(t){e=t.n}],execute:function(){t("default",e({},(function(){return this._self._c,this._m(0)}),[function(){var t=this._self._c;return t("div",{staticClass:"container py-4"},[t("h1",{staticClass:"text-3xl"},[this._v("404 Not Found")])])}],!1,null,null,null,null).exports)}}}));
