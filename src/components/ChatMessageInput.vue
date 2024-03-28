@@ -28,6 +28,7 @@ export default {
       placeholder="Write a message..."
       class="block w-full bg-slate-900 px-5 py-2 text-sm outline-none"
       minlength="1"
+      required
     />
   </form>
 </template>

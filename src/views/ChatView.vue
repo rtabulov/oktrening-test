@@ -55,11 +55,11 @@ export default {
 
 <template>
   <div class="container">
-    <div class="flex gap-px">
+    <div class="flex max-h-full min-h-0 gap-px">
       <div class="w-80">
         <ChatSelect v-bind="$props" />
       </div>
-      <div class="grow">
+      <div class="max-h-full min-h-0 grow">
         <ChatMessages v-if="chatId" :messages="messages" :chatId="chatId" />
         <ChatSelectPrompt v-else />
       </div>

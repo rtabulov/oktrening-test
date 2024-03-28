@@ -35,8 +35,10 @@ export default {
 </script>
 
 <template>
-  <div class="flex h-full grow flex-col">
-    <div class="flex grow flex-col justify-end gap-1 p-2 text-sm">
+  <div class="flex h-full max-h-full min-h-0 grow flex-col">
+    <div
+      class="flex max-h-full min-h-0 grow flex-col justify-end gap-1 overflow-y-auto p-2 text-sm"
+    >
       <ChatMessageItem
         v-for="message in messages"
         :key="message.id"

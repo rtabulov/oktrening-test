@@ -41,10 +41,9 @@ export default {
       {{ message.text }}
       <time
         :datetime="message.createdAt.toLocaleString()"
-        class="inline-block translate-y-1.5 text-xs text-slate-400"
+        class="inline-block translate-y-1.5 pl-2 text-xs text-slate-400"
         :class="{
-          'pr-2': isSender,
-          'pl-2': !isSender,
+          'pr-0.5': !isSender,
         }"
       >
         {{ formatTime(message.createdAt) }}
