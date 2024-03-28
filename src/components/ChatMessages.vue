@@ -28,7 +28,6 @@ export default {
   },
   methods: {
     onSubmit(text: string) {
-      console.log('submit', text);
       this.chatsStore.sendMessage({ text, to: this.chatId });
     },
   },

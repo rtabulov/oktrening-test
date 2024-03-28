@@ -62,6 +62,12 @@ export const availableUsers = [
     slug: 'hank',
     avatar: 'https://i.pravatar.cc/400?u=hank',
   },
+  {
+    id: 10,
+    name: 'Peter',
+    slug: 'peter',
+    avatar: 'https://i.pravatar.cc/400?u=peter',
+  },
 ] as User[];
 
 export const useUserStore = defineStore({
