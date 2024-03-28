@@ -56,7 +56,9 @@ export default defineComponent({
       />
     </div>
     <div>
-      <ChatMessageInput @submit="onSubmit" />
+      <KeepAlive>
+        <ChatMessageInput :key="chatId" ref="input" @submit="onSubmit" />
+      </KeepAlive>
     </div>
   </div>
 </template>
