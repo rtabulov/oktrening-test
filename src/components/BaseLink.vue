@@ -22,6 +22,8 @@ export default defineComponent({
     v-bind="$attrs"
     v-on="$listeners"
     class="text-slate-400 transition-colors hover:text-slate-100"
+    target="_blank"
+    rel="noopener noreferrer"
   >
     <slot />
   </a>
