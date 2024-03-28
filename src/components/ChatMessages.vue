@@ -1,13 +1,13 @@
 <script lang="ts">
 import type { Message } from '@/store/chats';
-import type { PropType } from 'vue';
+import { type PropType, defineComponent } from 'vue';
 import { mapStores } from 'pinia';
 import { useChatStore } from '@/store/chats';
 import { useUserStore } from '@/store/user';
 import ChatMessageInput from './ChatMessageInput.vue';
 import ChatMessageItem from './ChatMessageItem.vue';
 
-export default {
+export default defineComponent({
   name: 'ChatMessages',
   props: {
     messages: {
@@ -31,7 +31,7 @@ export default {
       this.chatsStore.sendMessage({ text, to: this.chatId });
     },
   },
-};
+});
 </script>
 
 <template>

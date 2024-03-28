@@ -2,8 +2,9 @@
 import { mapStores } from 'pinia';
 import { useChatStore } from '@/store/chats';
 import ChatBar from './ChatBar.vue';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'ChatSelect',
   props: {
     chatSlug: {
@@ -21,7 +22,7 @@ export default {
   computed: {
     ...mapStores(useChatStore),
   },
-};
+});
 </script>
 
 <template>

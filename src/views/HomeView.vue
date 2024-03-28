@@ -2,8 +2,9 @@
 import UserSelect from '@/components/UserSelect.vue';
 import { useUserStore } from '@/store/user';
 import { mapStores } from 'pinia';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'HomeView',
   components: {
     UserSelect,
@@ -21,7 +22,7 @@ export default {
       },
     },
   },
-};
+});
 </script>
 
 <template>

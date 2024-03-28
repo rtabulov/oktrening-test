@@ -5,8 +5,9 @@ import { mapStores } from 'pinia';
 import ChatSelect from '@/components/ChatSelect.vue';
 import ChatMessages from '@/components/ChatMessages.vue';
 import ChatSelectPrompt from '@/components/ChatSelectPrompt.vue';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'ChatView',
   props: {
     chatSlug: {
@@ -50,7 +51,7 @@ export default {
       },
     },
   },
-};
+});
 </script>
 
 <template>

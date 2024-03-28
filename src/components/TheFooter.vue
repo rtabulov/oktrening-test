@@ -1,23 +1,24 @@
 <script lang="ts">
-import UiLink from './ui/UiLink.vue';
+import { defineComponent } from 'vue';
+import BaseLink from './BaseLink.vue';
 
-export default {
+export default defineComponent({
   name: 'TheFooter',
   components: {
-    UiLink,
+    BaseLink,
   },
-};
+});
 </script>
 
 <template>
   <footer class="container py-4">
     <p class="text-end">
       Built with <br />
-      <UiLink href="https://vitejs.dev/">Vite</UiLink>&nbsp;
-      <UiLink href="https://v2.vuejs.org/">Vue 2.7</UiLink>&nbsp;
-      <UiLink href="https://v3.router.vuejs.org/">Vue router</UiLink>&nbsp;
-      <UiLink href="https://pinia.vuejs.org/">Pinia</UiLink>&nbsp;
-      <UiLink href="https://tailwindcss.com/">Tailwind</UiLink>
+      <BaseLink href="https://vitejs.dev/">Vite</BaseLink>&nbsp;
+      <BaseLink href="https://v2.vuejs.org/">Vue 2.7</BaseLink>&nbsp;
+      <BaseLink href="https://v3.router.vuejs.org/">Vue router</BaseLink>&nbsp;
+      <BaseLink href="https://pinia.vuejs.org/">Pinia</BaseLink>&nbsp;
+      <BaseLink href="https://tailwindcss.com/">Tailwind</BaseLink>
     </p>
   </footer>
 </template>

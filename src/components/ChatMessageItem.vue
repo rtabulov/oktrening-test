@@ -1,9 +1,9 @@
 <script lang="ts">
-import type { PropType } from 'vue';
+import { defineComponent, type PropType } from 'vue';
 import type { Message } from '@/store/chats';
 import { format } from 'date-fns';
 
-export default {
+export default defineComponent({
   name: 'ChatMessageItem',
   props: {
     message: {
@@ -21,7 +21,7 @@ export default {
       return format(date, 'HH:mm');
     },
   },
-};
+});
 </script>
 
 <template>

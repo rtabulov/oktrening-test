@@ -1,13 +1,14 @@
 <script lang="ts">
 import { useUserStore } from '@/store/user';
 import { mapStores } from 'pinia';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'UserSelect',
   computed: {
     ...mapStores(useUserStore),
   },
-};
+});
 </script>
 
 <template>

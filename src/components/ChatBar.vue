@@ -1,10 +1,10 @@
 <script lang="ts">
-import type { PropType } from 'vue';
+import { defineComponent, type PropType } from 'vue';
 import { mapStores } from 'pinia';
 import { useChatStore, type Chat } from '@/store/chats';
 import { formatDistanceToNow } from 'date-fns';
 
-export default {
+export default defineComponent({
   name: 'ChatBar',
   props: {
     chat: {
@@ -22,7 +22,7 @@ export default {
   methods: {
     formatDistanceToNow,
   },
-};
+});
 </script>
 
 <template>

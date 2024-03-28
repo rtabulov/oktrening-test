@@ -1,27 +1,28 @@
 <script lang="ts">
-import UiLink from './ui/UiLink.vue';
+import { defineComponent } from 'vue';
+import BaseLink from './BaseLink.vue';
 
-export default {
+export default defineComponent({
   name: 'TheHeader',
   components: {
-    UiLink,
+    BaseLink,
   },
-};
+});
 </script>
 
 <template>
   <header class="container py-4">
     <div class="flex items-center justify-between gap-4">
-      <UiLink class="text-2xl !text-white" to="/">
+      <BaseLink class="text-2xl !text-white" to="/">
         Chat app for Oktrening
-      </UiLink>
+      </BaseLink>
       <nav class="flex gap-4">
-        <UiLink to="/">Home</UiLink>
-        <UiLink to="/about">About</UiLink>
-        <UiLink href="https://github.com/rtabulov/oktrening-test">
+        <BaseLink to="/">Home</BaseLink>
+        <BaseLink to="/about">About</BaseLink>
+        <BaseLink href="https://github.com/rtabulov/oktrening-test">
           Source code
-        </UiLink>
-        <UiLink href="https://t.me/rtabulov">Contact me</UiLink>
+        </BaseLink>
+        <BaseLink href="https://t.me/rtabulov">Contact me</BaseLink>
       </nav>
     </div>
   </header>

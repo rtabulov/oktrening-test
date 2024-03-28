@@ -1,8 +1,10 @@
 <script lang="ts">
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'HomeView',
   components: {},
-};
+});
 </script>
 
 <template>

@@ -1,5 +1,7 @@
 <script lang="ts">
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'ChatMessageInput',
   data() {
     return {
@@ -17,7 +19,7 @@ export default {
       this.text = '';
     },
   },
-};
+});
 </script>
 
 <template>
