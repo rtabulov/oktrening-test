@@ -1,0 +1,1 @@
+import{n as s}from"./index.d3a769a6.js";const e={};var r=function(){var n=this;return n._self._c,n._m(0)},_=[function(){var t=this,n=t._self._c;return n("div",{staticClass:"container py-4"},[n("h1",{staticClass:"text-3xl"},[t._v("404 Not Found")])])}],o=s(e,r,_,!1,null,null,null,null);const l=o.exports;export{l as default};
