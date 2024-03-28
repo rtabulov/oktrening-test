@@ -2,7 +2,9 @@ import { defineStore } from 'pinia';
 import { useUserStore, type User } from './user';
 import { nanoid } from 'nanoid';
 
-export interface Chat extends User {}
+export interface Chat extends User {
+  lastMessage?: Message;
+}
 
 export interface Message {
   id: string;
@@ -152,36 +154,36 @@ const messages = [
 export const useChatStore = defineStore({
   id: 'chats',
   persist: true,
-  tabSync: true,
+  tabSync: ['messages'],
 
   state: () => ({
     messages,
   }),
 
   getters: {
-    chats() {
+    chats(): Chat[] {
       const userStore = useUserStore();
-      return userStore.availableUsers.filter(
-        (user) => user.id !== userStore.selectedUserId,
-      );
-    },
-    lastMessages(state) {
-      const userStore = useUserStore();
-
-      return state.messages.reduce(
-        (acc, message) => {
-          if (message.from === userStore.selectedUserId) {
-            acc[message.to] = message;
-          }
-
-          if (message.to === userStore.selectedUserId) {
-            acc[message.from] = message;
-          }
-
-          return acc;
-        },
-        {} as Record<number, Message>,
-      );
+      const reversedMessages = this.messages.slice().reverse();
+      return userStore.availableUsers
+        .filter((user) => user.id !== userStore.selectedUserId)
+        .map((user) => {
+          return {
+            ...user,
+            lastMessage: reversedMessages.find(
+              (message) =>
+                (message.from === userStore.selectedUserId &&
+                  message.to === user.id) ||
+                (message.to === userStore.selectedUserId &&
+                  message.from === user.id),
+            ),
+          };
+        })
+        .sort((c1, c2) => {
+          return (
+            (c2.lastMessage?.createdAt.valueOf() || 0) -
+            (c1.lastMessage?.createdAt.valueOf() || 0)
+          );
+        });
     },
   },
 

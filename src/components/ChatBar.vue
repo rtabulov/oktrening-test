@@ -18,9 +18,6 @@ export default {
   },
   computed: {
     ...mapStores(useChatStore),
-    lastMessage() {
-      return this.chatsStore.lastMessages[this.chat.id];
-    },
   },
   methods: {
     formatDistanceToNow,
@@ -44,14 +41,17 @@ export default {
           <span class="min-w-0 truncate font-medium">{{ chat.name }}</span>
           <time
             class="text-sm text-slate-400"
-            v-if="lastMessage"
-            :datetime="lastMessage.createdAt.toLocaleString()"
+            v-if="chat.lastMessage"
+            :datetime="chat.lastMessage.createdAt.toLocaleString()"
           >
-            {{ formatDistanceToNow(lastMessage?.createdAt) }}
+            {{ formatDistanceToNow(chat.lastMessage.createdAt) }}
           </time>
         </p>
-        <p v-if="lastMessage" class="max-w-fit truncate text-sm text-slate-400">
-          {{ lastMessage.text }}
+        <p
+          v-if="chat.lastMessage"
+          class="max-w-fit truncate text-sm text-slate-400"
+        >
+          {{ chat.lastMessage.text }}
         </p>
       </div>
     </RouterLink>
