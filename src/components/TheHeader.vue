@@ -1,11 +1,21 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import BaseLink from './BaseLink.vue';
+import { useChatStore } from '@/store/chats';
+import { mapStores } from 'pinia';
 
 export default defineComponent({
   name: 'TheHeader',
   components: {
     BaseLink,
+  },
+  computed: {
+    ...mapStores(useChatStore),
+  },
+  methods: {
+    clearMessages() {
+      this.chatsStore.clearMessages();
+    },
   },
 });
 </script>
@@ -22,7 +32,15 @@ export default defineComponent({
         <BaseLink href="https://github.com/rtabulov/oktrening-test">
           Source code
         </BaseLink>
-        <BaseLink href="https://t.me/rtabulov">Contact me</BaseLink>
+        <BaseLink class="hidden sm:block" href="https://t.me/rtabulov">
+          Contact me
+        </BaseLink>
+        <button
+          class="text-red-600 hover:text-red-800"
+          @click="clearMessages()"
+        >
+          Clear messages
+        </button>
       </nav>
     </div>
   </header>

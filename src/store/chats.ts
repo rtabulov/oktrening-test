@@ -202,5 +202,9 @@ export const useChatStore = defineStore({
         createdAt: new Date(),
       });
     },
+
+    clearMessages() {
+      this.messages = [];
+    },
   },
 });

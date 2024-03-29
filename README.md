@@ -15,4 +15,5 @@
 
 - [x] communication between windows does not work
 - [x] unusable on a phone
+- [x] needs a "clear message storage" button
 - [ ] chat sorting does not work properly
