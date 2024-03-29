@@ -16,7 +16,6 @@ declare module 'pinia' {
 interface StateMutation {
   mutation: SubscriptionCallbackMutation<StateTree>;
   patch: Patch;
-  source: string;
 }
 
 type Patch = Partial<StateTree>;
@@ -30,12 +29,9 @@ export function piniaPluginTabSync({
   }
 
   const bc = new BroadcastChannel(`pinia-tab-sync:${store.$id}`);
-  const tabID = getTabID();
 
   bc.addEventListener('message', (ev: MessageEvent<StateMutation>) => {
-    if (tabID !== ev.data.source) {
-      store.$patch(ev.data.patch);
-    }
+    store.$patch(ev.data.patch);
   });
 
   store.$subscribe((mutation) => {
@@ -43,20 +39,9 @@ export function piniaPluginTabSync({
       acc[key] = store.$state[key];
       return acc;
     }, {} as Patch);
-    const stateMutation: StateMutation = { mutation, patch, source: tabID };
+    const stateMutation: StateMutation = { mutation, patch };
     if (document.hasFocus()) {
       bc.postMessage(stateMutation);
     }
   });
-}
-
-function getTabID() {
-  const tabID = sessionStorage.getItem('pinia-tab-sync:tabID');
-  if (tabID) {
-    return tabID;
-  }
-
-  const newTabID = nanoid();
-  sessionStorage.setItem('tabID', newTabID);
-  return newTabID;
 }
