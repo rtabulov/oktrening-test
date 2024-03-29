@@ -153,7 +153,7 @@ const messages = [
 
 export const useChatStore = defineStore({
   id: 'chats',
-  persist: true,
+  persist: { paths: ['messages'] },
   tabSync: ['messages'],
 
   state: () => ({
