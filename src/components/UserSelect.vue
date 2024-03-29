@@ -12,7 +12,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="grid grid-cols-5 gap-4">
+  <div class="grid grid-cols-2 gap-4 sm:grid-cols-5">
     <article
       v-for="user in userStore.availableUsers"
       :key="user.id"
@@ -28,7 +28,7 @@ export default defineComponent({
           />
         </div>
         <header
-          class="absolute inset-0 z-10 flex items-center justify-center text-2xl text-transparent transition-colors group-hover:bg-slate-950/85 group-hover:text-inherit"
+          class="absolute inset-0 z-10 flex items-center justify-center bg-slate-950/85 text-2xl transition-colors sm:bg-transparent sm:text-transparent sm:group-hover:bg-slate-950/85 sm:group-hover:text-inherit"
         >
           {{ user.name }}
         </header>

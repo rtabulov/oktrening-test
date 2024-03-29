@@ -54,11 +54,28 @@ export default defineComponent({
 
 <template>
   <div class="container">
-    <div class="flex max-h-full min-h-0 gap-px">
-      <div class="w-80">
+    <div class="flex h-full min-h-0 flex-col gap-px sm:max-h-full sm:flex-row">
+      <div
+        class="w-full sm:w-80"
+        :class="{
+          'hidden sm:block': chatId,
+        }"
+      >
         <ChatSelect v-bind="$props" />
       </div>
-      <div class="max-h-full min-h-0 grow">
+      <div
+        class="max-h-full min-h-0 grow"
+        :class="{
+          block: chatId,
+          'hidden sm:block': !chatId,
+        }"
+      >
+        <div class="text-right sm:hidden">
+          <router-link to="/chats">
+            <i class="text-2xl">←</i>
+            back to chats
+          </router-link>
+        </div>
         <ChatMessages v-if="chatId" :messages="messages" :chat-id="chatId" />
         <ChatSelectPrompt v-else />
       </div>

@@ -12,7 +12,7 @@ export default defineComponent({
 
 <template>
   <header class="container py-4">
-    <div class="flex items-center justify-between gap-4">
+    <div class="flex flex-wrap items-center justify-between gap-4">
       <BaseLink class="text-2xl !text-white" to="/">
         Chat app for Oktrening
       </BaseLink>

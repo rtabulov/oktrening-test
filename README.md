@@ -14,5 +14,5 @@
 ### known problems
 
 - [x] communication between windows does not work
-- [ ] unusable on a phone
+- [x] unusable on a phone
 - [ ] chat sorting does not work properly
