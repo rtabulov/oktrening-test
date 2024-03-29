@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import type {
   PiniaPluginContext,
   SubscriptionCallbackMutation,
@@ -15,6 +16,7 @@ declare module 'pinia' {
 interface StateMutation {
   mutation: SubscriptionCallbackMutation<StateTree>;
   patch: Patch;
+  source: string;
 }
 
 type Patch = Partial<StateTree>;
@@ -28,14 +30,10 @@ export function piniaPluginTabSync({
   }
 
   const bc = new BroadcastChannel(`pinia-tab-sync:${store.$id}`);
-
-  let isActiveTab = document.visibilityState === 'visible';
-  document.addEventListener('visibilitychange', () => {
-    isActiveTab = document.visibilityState === 'visible';
-  });
+  const tabID = getTabID();
 
   bc.addEventListener('message', (ev: MessageEvent<StateMutation>) => {
-    if (!isActiveTab) {
+    if (tabID !== ev.data.source) {
       store.$patch(ev.data.patch);
     }
   });
@@ -45,7 +43,20 @@ export function piniaPluginTabSync({
       acc[key] = store.$state[key];
       return acc;
     }, {} as Patch);
-    const stateMutation: StateMutation = { mutation, patch };
-    bc.postMessage(stateMutation);
+    const stateMutation: StateMutation = { mutation, patch, source: tabID };
+    if (document.hasFocus()) {
+      bc.postMessage(stateMutation);
+    }
   });
+}
+
+function getTabID() {
+  const tabID = sessionStorage.getItem('pinia-tab-sync:tabID');
+  if (tabID) {
+    return tabID;
+  }
+
+  const newTabID = nanoid();
+  sessionStorage.setItem('tabID', newTabID);
+  return newTabID;
 }
