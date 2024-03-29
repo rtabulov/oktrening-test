@@ -6,7 +6,13 @@
 - [x] set up configs (tsconfig, prettier, eslint, scripts)
 - [x] write pinia tab sync plugin
 - [x] install pinia-plugin-persistedstate
-- [ ] write html templates
-- [ ] write user logic
-- [ ] write messages logic
-- [ ] write some initial messages
+- [x] write html templates
+- [x] write user logic
+- [x] write messages logic
+- [x] write some initial messages
+
+### known problems
+
+- [x] communication between windows does not work
+- [ ] unusable on a phone
+- [ ] chat sorting does not work properly
